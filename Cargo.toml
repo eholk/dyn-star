@@ -1,0 +1,10 @@
+[package]
+name = "dyn-star"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = ["std"]
+alloc = []
+std = ["alloc"]
+
