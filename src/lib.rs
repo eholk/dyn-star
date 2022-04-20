@@ -8,10 +8,16 @@ extern crate alloc;
 #[cfg(feature = "std")]
 extern crate std;
 
+pub struct DynMut<'a, T: ?Sized> {
+    pub(crate) ptr: NonNull<T>,
+    pub(crate) drop: unsafe fn(NonNull<T>),
+    pub(crate) marker: PhantomData<&'a mut T>,
+}
+
 pub struct Dyn<'a, T: ?Sized> {
-    ptr: NonNull<T>,
-    drop: unsafe fn(NonNull<T>),
-    marker: PhantomData<&'a mut T>,
+    pub(crate) ptr: NonNull<T>,
+    pub(crate) drop: unsafe fn(NonNull<T>),
+    pub(crate) marker: PhantomData<&'a mut T>,
 }
 
 mod ctors;
